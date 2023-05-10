@@ -1,7 +1,6 @@
 package sdk
 
 import (
-	"encoding/json"
 	"strings"
 	"time"
 )
@@ -234,11 +233,13 @@ var apiTimeouts = `{
 `
 
 func getAPIMaxTimeout(product, actionName string) (time.Duration, bool) {
-	timeout := make(map[string]map[string]int)
-	err := json.Unmarshal([]byte(apiTimeouts), &timeout)
-	if err != nil {
-		return 0 * time.Millisecond, false
-	}
+	//timeout := make(map[string]map[string]int)
+	//err := json.Unmarshal([]byte(apiTimeouts), &timeout)
+	//if err != nil {
+	//	return 0 * time.Millisecond, false
+	//}
+
+	timeout := map[string]map[string]int{}
 
 	obj := timeout[strings.ToLower(product)]
 	if obj != nil && obj[actionName] != 0 {
